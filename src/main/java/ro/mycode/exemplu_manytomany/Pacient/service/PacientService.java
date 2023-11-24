@@ -1,5 +1,6 @@
 package ro.mycode.exemplu_manytomany.Pacient.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ro.mycode.exemplu_manytomany.Medic.exceptions.MedicExistException;
 import ro.mycode.exemplu_manytomany.Medic.models.Medic;
@@ -7,6 +8,7 @@ import ro.mycode.exemplu_manytomany.Pacient.exceptions.PacientExistException;
 import ro.mycode.exemplu_manytomany.Pacient.models.Pacient;
 import ro.mycode.exemplu_manytomany.Pacient.repository.PacientRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +28,7 @@ public class PacientService {
         }
         return all;
     }
+
 
 
 }
