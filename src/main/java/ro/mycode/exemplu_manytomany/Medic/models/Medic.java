@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import ro.mycode.exemplu_manytomany.Pacient.models.Pacient;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public class Medic {
 
     @Id
@@ -49,7 +51,7 @@ public class Medic {
     @NotBlank(message = "specialitate is necessary")
     private String specialitate;
     @NotNull(message = "aniExperienta is necessary")
-    private int aniExperienta;
+    private int aniExperientia;
 
 
 
@@ -64,8 +66,15 @@ public class Medic {
     @JoinTable(name = "programaere",
             joinColumns = { @JoinColumn(name = "fk_medic") },
             inverseJoinColumns = { @JoinColumn(name = "fk_pacient") })
+
+
     private List<Pacient> pacients = new ArrayList<>();
 
+
+    public void adaugaPacient(Pacient pacient){
+       this.pacients.add(pacient);
+       pacient.addMedic(this);
+    }
 
 }
 

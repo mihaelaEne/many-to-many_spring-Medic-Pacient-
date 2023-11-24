@@ -57,10 +57,9 @@ public class Pacient {
     private List<Medic> medici= new ArrayList<>();
 
 
-    public Pacient(Long id, String nume, int varsta, boolean areIstoricMedical) {
-        this.id = id;
-        this.nume = nume;
-        this.varsta = varsta;
-        this.areIstoricMedical = areIstoricMedical;
+    public void addMedic(Medic medic){
+        this.medici.add(medic);
+        medic.adaugaPacient(this);
     }
+
 }
