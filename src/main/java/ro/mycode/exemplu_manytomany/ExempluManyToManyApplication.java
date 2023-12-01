@@ -22,20 +22,15 @@ public class ExempluManyToManyApplication {
     @Bean
     CommandLineRunner commandLineRunner(MedicRepo medicRepo, PacientRepo pacientRepo, MedicService medicService, PacientService pacientService) {
         return args ->{
+            Medic medic=medicRepo.findById(2L).get();
+            Pacient pacient=pacientRepo.findById(4L).get();
 
-//            Medic medic=
-//                    Medic.builder()
-//                                .nume("Popa")
-//                            .initialaTatalui('P')
-//                            .specialitate("Neuro")
-//                            .aniExperientia(44)
-//                            .build();
+            Pacient pacient1=pacientRepo.findById(7L).get();
+
+            medic.adaugaPacient(pacient1);
 
 
-          // medicService.getAllMedici().stream().forEach(System.out::println);
-
-
-
+            medicRepo.saveAndFlush(medic);
 
 
         };

@@ -1,5 +1,6 @@
 package ro.mycode.exemplu_manytomany.Pacient.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -52,14 +53,14 @@ public class Pacient {
     private boolean areIstoricMedical;
 
 
+
+
     @ManyToMany(mappedBy="pacients",
             fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Medic> medici= new ArrayList<>();
 
 
-    public void addMedic(Medic medic){
-        this.medici.add(medic);
-        medic.adaugaPacient(this);
-    }
+
 
 }
