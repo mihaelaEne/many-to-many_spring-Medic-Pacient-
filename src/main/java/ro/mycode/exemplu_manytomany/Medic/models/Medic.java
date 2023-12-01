@@ -1,9 +1,11 @@
 package ro.mycode.exemplu_manytomany.Medic.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -54,27 +56,24 @@ public class Medic {
     private int aniExperientia;
 
 
-
-
-
+    @JsonManagedReference
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
 
     )
-
-    @JoinTable(name = "programaere",
-            joinColumns = { @JoinColumn(name = "fk_medic") },
-            inverseJoinColumns = { @JoinColumn(name = "fk_pacient") })
-
+    @JoinTable(name = "programare",
+            joinColumns = {@JoinColumn(name = "medic_id")},
+            inverseJoinColumns = {@JoinColumn(name = "pacient_id")})
+    @Builder.Default
 
     private List<Pacient> pacients = new ArrayList<>();
 
 
-    public void adaugaPacient(Pacient pacient){
-       this.pacients.add(pacient);
-       pacient.addMedic(this);
+    public void adaugaPacient(Pacient pacient) {
+        pacients.add(pacient);
     }
+
 
 }
 

@@ -15,4 +15,5 @@ public interface PacientRepo extends JpaRepository<Pacient,Long> {
 
 
 
+
 }
